@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <the-hero></the-hero>
+    <the-hero>
+      <template slot="mainNav"><the-header/></template>
+    </the-hero>
 
     <div class="container view">
       <router-view/>
@@ -13,12 +15,14 @@
 <script>
 import TheHero from '@/components/TheHero.vue'
 import TheFooter from '@/components/TheFooter.vue'
+import TheHeader from '@/components/TheHeader.vue'
 
 export default {
   name: 'App',
   components: {
     TheHero,
-    TheFooter
+    TheFooter,
+    TheHeader
   }
 }
 </script>
