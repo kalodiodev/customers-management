@@ -5,6 +5,7 @@ import PageCustomers from '@/views/PageCustomers'
 import PageAbout from '@/views/PageAbout'
 import PageNotFound from '@/views/PageNotFound'
 import PageSignIn from '@/views/PageSignIn'
+import PageSignUp from '@/views/PageSignUp'
 
 Vue.use(Router)
 
@@ -13,6 +14,7 @@ const routes = [
   { path: '/customers', name: 'PageCustomers', component: PageCustomers },
   { path: '/about', name: 'PageAbout', component: PageAbout },
   { path: '/signin', name: 'PageSignIn', component: PageSignIn },
+  { path: '/signup', name: 'PageSignUp', component: PageSignUp },
   { path: '*', name: 'PageNotFound', component: PageNotFound }
 ]
 
