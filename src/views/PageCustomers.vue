@@ -1,19 +1,21 @@
 <template>
   <div>
-    <h1>Customers</h1>
-    <table>
+    <h2 class="title is-3">Customers</h2>
+    <table class="table is-bordered is-striped is-hoverable is-fullwidth" >
       <thead>
         <tr>
           <th>ID</th>
           <th>First Name</th>
           <th>Last Name</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr v-for="(customer, key) in customers" :key="key">
+          <td>{{ key }}</td>
+          <td>{{ customer.firstName }}</td>
+          <td>{{ customer.lastName }}</td>
+          <td><button class="button is-warning">Edit</button></td>
         </tr>
       </tbody>
     </table>
@@ -21,7 +23,14 @@
 </template>
 
 <script>
+import sourceData from '../data'
+
 export default {
+  data() {
+    return {
+      customers: sourceData.customers
+    }
+  }
 
 }
 </script>

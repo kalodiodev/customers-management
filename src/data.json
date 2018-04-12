@@ -1,0 +1,52 @@
+{
+  "customers" : {
+    "-fdsdfsfe" : {
+      "firstName" : "John",
+      "lastName" : "Doe",
+      "email" : "johndoe@example.com",
+      "profession" : "Lawer",
+      "address": "Address 1",
+      "city": "LA",
+      "country": "USA",
+      "taxId": "123456",
+      "notes": "Test",
+      "createdAt" : ""
+    },
+    "-fdsdfaaa" : {
+      "firstName" : "Jane",
+      "lastName" : "Doe",
+      "email" : "janedoe@example.com",
+      "profession" : "Designer",
+      "address": "Address 2",
+      "city": "LA",
+      "country": "USA",
+      "taxId": "123457",
+      "notes": "Test",
+      "createdAt" : ""
+    },
+    "-fdsdfbbb" : {
+      "firstName" : "John",
+      "lastName" : "Smith",
+      "email" : "johnsmith@example.com",
+      "profession" : "Developer",
+      "address": "Address 3",
+      "city": "LA",
+      "country": "USA",
+      "taxId": "123458",
+      "notes": "Test",
+      "createdAt" : ""
+    },
+    "-fdsdfccc" : {
+      "firstName" : "Paul",
+      "lastName" : "Smith",
+      "email" : "paulsmith@example.com",
+      "profession" : "Engineer",
+      "address": "Address 3",
+      "city": "LA",
+      "country": "USA",
+      "taxId": "123459",
+      "notes": "Test",
+      "createdAt" : ""
+    }
+  }
+}
