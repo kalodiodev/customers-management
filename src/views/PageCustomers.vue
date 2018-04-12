@@ -19,6 +19,12 @@
         </tr>
       </tbody>
     </table>
+
+    <div style="clear: both;">
+      <button
+        class="button is-primary"
+      >Add Customer</button>
+    </div>
   </div>
 </template>
 
@@ -26,12 +32,11 @@
 import sourceData from '../data'
 
 export default {
-  data() {
+  data () {
     return {
       customers: sourceData.customers
     }
   }
-
 }
 </script>
 
