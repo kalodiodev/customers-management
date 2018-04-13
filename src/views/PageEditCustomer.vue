@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <customer-form></customer-form>
-    <button class="button is-success is-pulled-right">Save Customer</button>
+    <button class="button is-success is-pulled-right">Update Customer</button>
   </section>
 </template>
 
