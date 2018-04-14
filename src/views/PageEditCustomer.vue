@@ -13,7 +13,7 @@ export default {
     CustomerForm
   },
 
-  created: {
+  created () {
 
   },
 
