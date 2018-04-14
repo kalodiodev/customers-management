@@ -90,7 +90,20 @@
 export default {
   props: {
     customer: {
-      type: Object
+      type: Object,
+      default: {
+        id: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        address: "",
+        city: "",
+        country: "",
+        taxId: "",
+        profession: "",
+        notes: ""
+      }
     }
   },
 
