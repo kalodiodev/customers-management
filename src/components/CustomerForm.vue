@@ -91,23 +91,25 @@ export default {
   props: {
     customer: {
       type: Object,
-      default: {
-        id: "",
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        address: "",
-        city: "",
-        country: "",
-        taxId: "",
-        profession: "",
-        notes: ""
+      default () {
+        return {
+          id: '',
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          address: '',
+          city: '',
+          country: '',
+          taxId: '',
+          profession: '',
+          notes: ''
+        }
       }
     }
   },
 
-  data() {
+  data () {
     return {
       firstName: this.customer.firstName,
       lastName: this.customer.lastName,
@@ -124,7 +126,7 @@ export default {
 
   methods: {
     save () {
-      this.$emit("saveCustomer", {
+      this.$emit('saveCustomer', {
         firstName: this.customer.id,
         lastName: this.lastName,
         email: this.email,

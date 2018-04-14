@@ -14,7 +14,7 @@ export default {
   },
 
   methods: {
-    saveCustomer(customer) {
+    saveCustomer (customer) {
       // TODO: Save customer
     }
   }
