@@ -1,7 +1,7 @@
 <template>
   <section class="section">
+    <h2 class="title is-3">Add Customer</h2>
     <customer-form></customer-form>
-    <button class="button is-success is-pulled-right">Save Customer</button>
   </section>
 </template>
 
