@@ -8,5 +8,16 @@ export const store = new Vuex.Store({
 
   state: {
     customers: sourceData.customers
+  },
+  getters: {
+    customers: state => {
+      return state.customers
+    }
+  },
+  mutations: {
+
+  },
+  actions: {
+
   }
 })

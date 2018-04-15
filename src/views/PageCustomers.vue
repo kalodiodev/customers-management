@@ -29,11 +29,19 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   data () {
     return {
-      customers: this.$store.state.customers
+
     }
+  },
+  
+  computed: {
+    ...mapGetters ([
+      'customers'
+    ])
   }
 }
 </script>
