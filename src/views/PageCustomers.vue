@@ -29,12 +29,10 @@
 </template>
 
 <script>
-import sourceData from '../data'
-
 export default {
   data () {
     return {
-      customers: sourceData.customers
+      customers: this.$store.state.customers
     }
   }
 }
