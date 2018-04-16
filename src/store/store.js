@@ -26,6 +26,10 @@ export const store = new Vuex.Store({
 
     updateCustomer: (state, payload) => {
       Vue.set(state.customers, payload.id, payload)
+    },
+
+    deleteCustomer: (state, payload) => {
+      Vue.delete(state.customers, payload)
     }
   },
   actions: {
@@ -35,6 +39,10 @@ export const store = new Vuex.Store({
 
     updateCustomer: ({ commit }, payload) => {
       commit('updateCustomer', payload)
+    },
+
+    deleteCustomer: ({ commit }, payload) => {
+      commit('deleteCustomer', payload)
     }
   }
 })

@@ -15,7 +15,10 @@
           <td>{{ key }}</td>
           <td>{{ customer.firstName }}</td>
           <td>{{ customer.lastName }}</td>
-          <td><button class="button is-warning" @click="editCustomer(key)">Edit</button></td>
+          <td>
+            <button class="button is-warning" @click="editCustomer(key)">Edit</button>
+            <button class="button is-danger" @click="deleteCustomer(key)">Delete</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -30,7 +33,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   data () {
@@ -46,6 +49,10 @@ export default {
   },
 
   methods: {
+    ...mapActions([
+      'deleteCustomer'
+    ]),
+
     createCustomer () {
       this.$router.push('/customers/create')
     },
