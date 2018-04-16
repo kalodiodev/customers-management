@@ -15,7 +15,9 @@ export default {
 
   methods: {
     saveCustomer (customer) {
-      // TODO: Save customer
+      this.$store.dispatch('saveCustomer', customer)
+
+      this.$router.push('/customers')
     }
   }
 }

@@ -15,9 +15,14 @@ export const store = new Vuex.Store({
     }
   },
   mutations: {
-
+    storeCustomer: (state, payload) => {
+      payload.id = (Math.random() * 1e32).toString(36)
+      Vue.set(state.customers, payload.id, payload)
+    }
   },
   actions: {
-
+    saveCustomer: ({ commit }, payload) => {
+      commit('storeCustomer', payload)
+    }
   }
 })

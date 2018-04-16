@@ -82,7 +82,7 @@
       </p>
     </div>
 
-    <button class="button is-success is-pulled-right">Save Customer</button>
+    <button class="button is-success is-pulled-right" @click="save">Save Customer</button>
   </div>
 </template>
 
@@ -127,7 +127,8 @@ export default {
   methods: {
     save () {
       this.$emit('saveCustomer', {
-        firstName: this.customer.id,
+        id: this.customer.id,
+        firstName: this.firstName,
         lastName: this.lastName,
         email: this.email,
         phone: this.phone,

@@ -23,6 +23,7 @@
     <div style="clear: both;">
       <button
         class="button is-primary"
+        @click="createCustomer"
       >Add Customer</button>
     </div>
   </div>
@@ -37,11 +38,17 @@ export default {
 
     }
   },
-  
+
   computed: {
     ...mapGetters ([
       'customers'
     ])
+  },
+
+  methods: {
+    createCustomer () {
+      this.$router.push('/customers/create')
+    }
   }
 }
 </script>
