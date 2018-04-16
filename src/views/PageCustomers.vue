@@ -15,7 +15,7 @@
           <td>{{ key }}</td>
           <td>{{ customer.firstName }}</td>
           <td>{{ customer.lastName }}</td>
-          <td><button class="button is-warning">Edit</button></td>
+          <td><button class="button is-warning" @click="editCustomer(key)">Edit</button></td>
         </tr>
       </tbody>
     </table>
@@ -40,7 +40,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters ([
+    ...mapGetters([
       'customers'
     ])
   },
@@ -48,6 +48,10 @@ export default {
   methods: {
     createCustomer () {
       this.$router.push('/customers/create')
+    },
+
+    editCustomer (key) {
+      this.$router.push({ path: `/customer/${key}/edit` })
     }
   }
 }

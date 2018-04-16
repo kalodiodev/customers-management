@@ -1,6 +1,7 @@
 {
   "customers" : {
     "-fdsdfsfe" : {
+      "id" : "-fdsdfsfe",
       "firstName" : "John",
       "lastName" : "Doe",
       "email" : "johndoe@example.com",
@@ -14,6 +15,7 @@
       "createdAt" : ""
     },
     "-fdsdfaaa" : {
+      "id" : "-fdsdfaaa",
       "firstName" : "Jane",
       "lastName" : "Doe",
       "email" : "janedoe@example.com",
@@ -27,6 +29,7 @@
       "createdAt" : ""
     },
     "-fdsdfbbb" : {
+      "id" : "-fdsdfbbb",
       "firstName" : "John",
       "lastName" : "Smith",
       "email" : "johnsmith@example.com",
@@ -40,6 +43,7 @@
       "createdAt" : ""
     },
     "-fdsdfccc" : {
+      "id" : "-fdsdfccc",
       "firstName" : "Paul",
       "lastName" : "Smith",
       "email" : "paulsmith@example.com",

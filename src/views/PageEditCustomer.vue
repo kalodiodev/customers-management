@@ -1,11 +1,12 @@
 <template>
   <section class="section">
     <h2 class="title is-3">Edit Customer</h2>
-    <customer-form @saveCustomer="updateCustomer"></customer-form>
+    <customer-form :customer="customer" @saveCustomer="updateCustomer"></customer-form>
   </section>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import CustomerForm from '@/components/CustomerForm'
 
 export default {
@@ -13,13 +14,21 @@ export default {
     CustomerForm
   },
 
-  created () {
+  computed: {
+    ...mapGetters({
+      getCustomer: 'customer'
+    }),
 
+    customer () {
+      return this.getCustomer(this.$route.params.id)
+    }
   },
 
   methods: {
     updateCustomer (customer) {
-      // TODO: Save updated customer
+      this.$store.dispatch('updateCustomer', customer)
+
+      this.$router.push('/customers')
     }
   }
 }

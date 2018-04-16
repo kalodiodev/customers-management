@@ -15,7 +15,7 @@ const routes = [
   { path: '/', name: 'PageHome', component: PageHome },
   { path: '/customers', name: 'PageCustomers', component: PageCustomers },
   { path: '/customers/create', name: 'PageAddCustomer', component: PageAddCustomer },
-  { path: '/customers/edit', name: 'PageEditCustomer', component: PageEditCustomer },
+  { path: '/customer/:id/edit', name: 'PageEditCustomer', component: PageEditCustomer },
   { path: '/about', name: 'PageAbout', component: PageAbout },
   { path: '/signin', name: 'PageSignIn', component: PageSignIn },
   { path: '/signup', name: 'PageSignUp', component: PageSignUp },
