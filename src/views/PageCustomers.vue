@@ -17,7 +17,7 @@
           <td>{{ customer.lastName }}</td>
           <td>
             <button class="button is-warning" @click="editCustomer(key)">Edit</button>
-            <button class="button is-danger" @click="deleteCustomer(key)">Delete</button>
+            <button class="button is-danger" @click="requireDeleteCustomer(key)">Delete</button>
           </td>
         </tr>
       </tbody>
@@ -29,16 +29,34 @@
         @click="createCustomer"
       >Add Customer</button>
     </div>
+
+    <confirmation-modal
+        v-if="showConfirm"
+        :confirmButtonClass="'is-danger'"
+        @confirm="performDelete"
+        @cancel="closeConfirmation"
+        @close="closeConfirmation"
+      >
+        <template slot="title">Delete Customer</template>
+        <template>Are you sure you want to delete customer ?</template>
+        <template slot="confirm">Delete</template>
+      </confirmation-modal>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import ConfirmationModal from '@/components/ConfirmationModal'
 
 export default {
+  components: {
+    ConfirmationModal
+  },
+
   data () {
     return {
-
+      customerIdOnDeletion: '',
+      showConfirm: false
     }
   },
 
@@ -59,6 +77,25 @@ export default {
 
     editCustomer (key) {
       this.$router.push({ path: `/customer/${key}/edit` })
+    },
+
+    requireDeleteCustomer (key) {
+      this.customerIdOnDeletion = key
+      this.showConfirmation()
+    },
+
+    showConfirmation () {
+      this.showConfirm = true
+    },
+
+    closeConfirmation () {
+      this.customerIdOnDeletion = ''
+      this.showConfirm = false
+    },
+
+    performDelete () {
+      this.deleteCustomer(this.customerIdOnDeletion)
+      this.closeConfirmation()
     }
   }
 }
