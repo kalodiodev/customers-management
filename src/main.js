@@ -3,8 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import Vuelidate from 'vuelidate'
 
 import { store } from '@/store/store'
+
+Vue.use(Vuelidate)
 
 Vue.config.productionTip = false
 
