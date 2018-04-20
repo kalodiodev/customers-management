@@ -29,8 +29,8 @@ export const store = new Vuex.Store({
       Vue.set(state.customers, key, customer)
     },
 
-    updateCustomer: (state, payload) => {
-      Vue.set(state.customers, payload.id, payload)
+    updateCustomer: (state, {key, customer}) => {
+      Vue.set(state.customers, key, customer)
     },
 
     deleteCustomer: (state, payload) => {
@@ -55,8 +55,12 @@ export const store = new Vuex.Store({
         .catch(error => console.log(error))
     },
 
-    updateCustomer: ({ commit }, payload) => {
-      commit('updateCustomer', payload)
+    updateCustomer: ({ commit }, {key, customer}) => {
+      axios.patch('customers/' + key + '.json', customer)
+        .then(res => {
+          commit('updateCustomer', {key, customer})
+        })
+        .catch(error => console.log(error))
     },
 
     deleteCustomer: ({ commit }, payload) => {

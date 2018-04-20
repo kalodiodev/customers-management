@@ -26,7 +26,10 @@ export default {
 
   methods: {
     updateCustomer (customer) {
-      this.$store.dispatch('updateCustomer', customer)
+      this.$store.dispatch('updateCustomer', {
+        'key': this.$route.params.id,
+        'customer': customer
+      })
 
       this.$router.push('/customers')
     }
