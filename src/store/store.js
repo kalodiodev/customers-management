@@ -33,8 +33,8 @@ export const store = new Vuex.Store({
       Vue.set(state.customers, key, customer)
     },
 
-    deleteCustomer: (state, payload) => {
-      Vue.delete(state.customers, payload)
+    deleteCustomer: (state, key) => {
+      Vue.delete(state.customers, key)
     }
   },
 
@@ -63,8 +63,12 @@ export const store = new Vuex.Store({
         .catch(error => console.log(error))
     },
 
-    deleteCustomer: ({ commit }, payload) => {
-      commit('deleteCustomer', payload)
+    deleteCustomer: ({ commit }, key) => {
+      axios.delete('customers/' + key + '.json')
+        .then(res => {
+          commit('deleteCustomer', key)
+        })
+        .catch(error => console.log(error))
     }
   }
 })
