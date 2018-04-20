@@ -60,6 +60,10 @@ export default {
     }
   },
 
+  created () {
+    this.$store.dispatch('fetchCustomers')
+  },
+
   computed: {
     ...mapGetters([
       'customers'
