@@ -1,0 +1,5 @@
+{
+  "axios": {
+    "baseURL": "Insert here axios base URL"
+  }
+}
