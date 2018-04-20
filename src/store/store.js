@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import sourceData from '@/data'
+import axios from '@/axios-firebase'
 
 Vue.use(Vuex)
 
@@ -9,6 +10,7 @@ export const store = new Vuex.Store({
   state: {
     customers: sourceData.customers
   },
+
   getters: {
     customers: state => {
       return state.customers
@@ -18,10 +20,10 @@ export const store = new Vuex.Store({
       return state.customers[id]
     }
   },
+
   mutations: {
-    storeCustomer: (state, payload) => {
-      payload.id = (Math.random() * 1e32).toString(36)
-      Vue.set(state.customers, payload.id, payload)
+    storeCustomer: (state, {key, customer}) => {
+      Vue.set(state.customers, key, customer)
     },
 
     updateCustomer: (state, payload) => {
@@ -32,9 +34,14 @@ export const store = new Vuex.Store({
       Vue.delete(state.customers, payload)
     }
   },
+
   actions: {
-    saveCustomer: ({ commit }, payload) => {
-      commit('storeCustomer', payload)
+    saveCustomer: ({ commit }, customer) => {
+      axios.post('customers.json', customer)
+        .then(res => {
+          commit('storeCustomer', {'key': res.data.name, 'customer': customer})
+        })
+        .catch(error => console.log(error))
     },
 
     updateCustomer: ({ commit }, payload) => {
