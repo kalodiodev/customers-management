@@ -34,32 +34,38 @@ const mutations = {
 }
 
 const actions = {
-  fetchCustomers: ({commit}) => {
-    axios.get('customers.json')
+  fetchCustomers: ({commit, getters}) => {
+    // get customers: /customers/userId.json?auth=token
+    axios.get('customers/' + getters.userId + '.json?auth=' + getters.idToken)
       .then(res => {
-        commit('setCustomers', res.data)
+        if (res.data != null) {
+          commit('setCustomers', res.data)
+        }
       })
       .catch(error => console.log(error))
   },
 
-  saveCustomer: ({ commit }, customer) => {
-    axios.post('customers.json', customer)
+  saveCustomer: ({ commit, getters }, customer) => {
+    // save customer: /customers/userId.json?auth=token
+    axios.post('/customers/' + getters.userId + '.json?auth=' + getters.idToken, customer)
       .then(res => {
         commit('storeCustomer', {'key': res.data.name, 'customer': customer})
       })
       .catch(error => console.log(error))
   },
 
-  updateCustomer: ({ commit }, {key, customer}) => {
-    axios.patch('customers/' + key + '.json', customer)
+  updateCustomer: ({ commit, getters }, {key, customer}) => {
+    // update customer: /customers/userId.json?auth=token
+    axios.patch('customers/' + getters.userId + '/' + key + '.json?auth=' + getters.idToken, customer)
       .then(res => {
         commit('updateCustomer', {key, customer})
       })
       .catch(error => console.log(error))
   },
 
-  deleteCustomer: ({ commit }, key) => {
-    axios.delete('customers/' + key + '.json')
+  deleteCustomer: ({ commit, getters }, key) => {
+    // delete customer: /customers/userId.json?auth=token
+    axios.delete('customers/' + key + '.json?auth=' + getters.idToken)
       .then(res => {
         commit('deleteCustomer', key)
       })

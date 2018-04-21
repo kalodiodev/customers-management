@@ -12,17 +12,21 @@ export const store = new Vuex.Store({
 
   state: {
     idToken: null,
-    userId: null,
-    user: null
+    userId: null
   },
 
   getters: {
-    user (state) {
-      return state.user
-    },
-
     isAuthenticated (state) {
       return state.idToken !== null
+    },
+
+    userId (state) {
+      return state.userId
+    },
+
+    // User authentication token
+    idToken (state) {
+      return state.idToken
     }
   },
 
@@ -51,6 +55,11 @@ export const store = new Vuex.Store({
             userId: res.data.localId
           })
 
+          dispatch('storeUser', {
+            'id': res.data.localId,
+            'name': authData.name,
+            'email': authData.email
+          })
           router.replace({'name': 'PageCustomers'})
         })
         .catch(error => console.log(error))

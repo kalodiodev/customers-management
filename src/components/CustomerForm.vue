@@ -155,7 +155,6 @@ export default {
       type: Object,
       default () {
         return {
-          id: '',
           firstName: '',
           lastName: '',
           email: '',
