@@ -30,6 +30,11 @@ export const store = new Vuex.Store({
     authUser (state, userData) {
       state.idToken = userData.token
       state.userId = userData.userId
+    },
+
+    clearAuthData (state) {
+      state.idToken = null
+      state.userId = null
     }
   },
 
@@ -66,6 +71,12 @@ export const store = new Vuex.Store({
           router.replace({'name': 'PageCustomers'})
         })
         .catch(error => console.log(error))
+    },
+
+    logout ({commit}) {
+      commit('clearAuthData')
+
+      router.replace({'name': 'PageSignIn'})
     }
   },
 
