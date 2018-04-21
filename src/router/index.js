@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import {store} from '@/store/store'
 import PageHome from '@/views/PageHome'
 import PageCustomers from '@/views/PageCustomers'
 import PageAddCustomer from '@/views/PageAddCustomer'
@@ -13,7 +14,7 @@ Vue.use(Router)
 
 const routes = [
   { path: '/', name: 'PageHome', component: PageHome },
-  { path: '/customers', name: 'PageCustomers', component: PageCustomers },
+  { path: '/customers', name: 'PageCustomers', component: PageCustomers, meta: { requiresAuth: true } },
   { path: '/customers/create', name: 'PageAddCustomer', component: PageAddCustomer },
   { path: '/customer/:id/edit', name: 'PageEditCustomer', component: PageEditCustomer },
   { path: '/about', name: 'PageAbout', component: PageAbout },
@@ -22,4 +23,20 @@ const routes = [
   { path: '*', name: 'PageNotFound', component: PageNotFound }
 ]
 
-export default new Router({mode: 'history', routes})
+const router = new Router({mode: 'history', routes})
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (store.getters.isAuthenticated) {
+      next()
+    } else {
+      next('/signin')
+    }
+  } else {
+    next()
+  }
+})
+
+export default router

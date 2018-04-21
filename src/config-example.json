@@ -1,5 +1,7 @@
 {
   "axios": {
-    "baseURL": "Insert here axios base URL"
+    "baseURL": "Insert here axios base URL",
+    "authBaseURL": "Authentication Base URL",
+    "authAPIKey": "Authentication API key"
   }
 }
