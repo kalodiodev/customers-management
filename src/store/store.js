@@ -4,6 +4,7 @@ import customer from './modules/customer'
 import user from './modules/user'
 import axiosAuth from '@/axios-auth'
 import config from '@/config'
+import router from '@/router/index'
 
 Vue.use(Vuex)
 
@@ -44,6 +45,25 @@ export const store = new Vuex.Store({
             token: res.data.idToken,
             userId: res.data.localId
           })
+
+          router.replace({'name': 'PageCustomers'})
+        })
+        .catch(error => console.log(error))
+    },
+
+    signin ({commit, dispatch}, authData) {
+      axiosAuth.post('/verifyPassword?key=' + config.axios.authAPIKey, {
+        email: authData.email,
+        password: authData.password,
+        returnSecureToken: true
+      })
+        .then(res => {
+          commit('authUser', {
+            token: res.data.idToken,
+            userId: res.data.localId
+          })
+
+          router.replace({'name': 'PageCustomers'})
         })
         .catch(error => console.log(error))
     }

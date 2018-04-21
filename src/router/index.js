@@ -18,8 +18,8 @@ const routes = [
   { path: '/customers/create', name: 'PageAddCustomer', component: PageAddCustomer },
   { path: '/customer/:id/edit', name: 'PageEditCustomer', component: PageEditCustomer },
   { path: '/about', name: 'PageAbout', component: PageAbout },
-  { path: '/signin', name: 'PageSignIn', component: PageSignIn },
-  { path: '/signup', name: 'PageSignUp', component: PageSignUp },
+  { path: '/signin', name: 'PageSignIn', component: PageSignIn, meta: { requiresNotAuth: true } },
+  { path: '/signup', name: 'PageSignUp', component: PageSignUp, meta: { requiresNotAuth: true } },
   { path: '*', name: 'PageNotFound', component: PageNotFound }
 ]
 
@@ -32,9 +32,18 @@ router.beforeEach((to, from, next) => {
     if (store.getters.isAuthenticated) {
       next()
     } else {
-      next('/signin')
+      next({ name: 'PageSignIn', query: { redirect: to.fullPath } })
+    }
+  } else if (to.matched.some(record => record.meta.requiresNotAuth)) {
+    // this route requires not auth, check if logged in
+    // if yes, redirect to customers page.
+    if (!store.getters.isAuthenticated) {
+      next()
+    } else {
+      next({ name: 'PageCustomers', query: { redirect: to.fullPath } })
     }
   } else {
+    // this route does not require special handling
     next()
   }
 })
