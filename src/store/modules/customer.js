@@ -65,7 +65,7 @@ const actions = {
 
   deleteCustomer: ({ commit, getters }, key) => {
     // delete customer: /customers/userId.json?auth=token
-    axios.delete('customers/' + key + '.json?auth=' + getters.idToken)
+    axios.delete('customers/' + getters.userId + '/' + key + '.json?auth=' + getters.idToken)
       .then(res => {
         commit('deleteCustomer', key)
       })
