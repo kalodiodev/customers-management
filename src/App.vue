@@ -23,6 +23,9 @@ export default {
     TheHero,
     TheFooter,
     TheHeader
+  },
+  created () {
+    this.$store.dispatch('tryAutoLogin')
   }
 }
 </script>

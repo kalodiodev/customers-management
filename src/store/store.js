@@ -50,10 +50,7 @@ export const store = new Vuex.Store({
         returnSecureToken: true
       })
         .then(res => {
-          commit('authUser', {
-            token: res.data.idToken,
-            userId: res.data.localId
-          })
+          dispatch('localPersistAuth', res)
 
           dispatch('storeUser', {
             'id': res.data.localId,
@@ -72,20 +69,69 @@ export const store = new Vuex.Store({
         returnSecureToken: true
       })
         .then(res => {
-          commit('authUser', {
-            token: res.data.idToken,
-            userId: res.data.localId
-          })
+          dispatch('localPersistAuth', res)
 
           router.replace({'name': 'PageCustomers'})
         })
         .catch(error => console.log(error))
     },
 
-    logout ({commit}) {
+    logout ({commit, dispatch}) {
       commit('clearAuthData')
+      dispatch('clearAuthLocalPersist')
 
       router.replace({'name': 'PageSignIn'})
+    },
+
+    localPersistAuth ({commit, dispatch}, res) {
+      const now = new Date()
+      const expirationDate = new Date(now.getTime() + res.data.expiresIn * 1000)
+      localStorage.setItem('token', res.data.idToken)
+      localStorage.setItem('userId', res.data.localId)
+      localStorage.setItem('expirationDate', expirationDate)
+
+      commit('authUser', {
+        token: res.data.idToken,
+        userId: res.data.localId
+      })
+
+      dispatch('setLogoutTimer', res.data.expiresIn)
+    },
+
+    clearAuthLocalPersist () {
+      localStorage.removeItem('expirationDate')
+      localStorage.removeItem('token')
+      localStorage.removeItem('userId')
+    },
+
+    tryAutoLogin ({commit}) {
+      // Token
+      const token = localStorage.getItem('token')
+      if (!token) {
+        return
+      }
+
+      // Expiration Date
+      const expirationDate = localStorage.getItem('expirationDate')
+      const now = new Date()
+      if (now >= expirationDate) {
+        return
+      }
+
+      // User Id
+      const userId = localStorage.getItem('userId')
+      commit('authUser', {
+        token: token,
+        userId: userId
+      })
+
+      router.replace({ name: 'PageCustomers' })
+    },
+
+    setLogoutTimer ({commit}, expirationTime) {
+      setTimeout(() => {
+        commit('clearAuthData')
+      }, expirationTime * 1000)
     }
   },
 
