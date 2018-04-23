@@ -142,7 +142,7 @@
       </p>
     </div>
 
-    <button class="button is-success is-pulled-right" type="submit">Save Customer</button>
+    <button class="button is-success is-pulled-right" type="submit" :disabled="$v.$invalid">Save Customer</button>
   </form>
 </template>
 
