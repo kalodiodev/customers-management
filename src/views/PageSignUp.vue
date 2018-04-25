@@ -102,8 +102,8 @@
           <input
             type="checkbox"
             @change="$v.terms.$touch()"
-            v-model="terms">I agree to the <a href="#">terms and conditions</a>
-        </label>
+            v-model="terms"> I agree to the <a @click.prevent="showTerms()">terms and conditions</a>
+        </label>      
       </p>
       <p v-if="$v.terms.$error && !$v.terms.required" class="help is-danger">
         You must accept terms and conditions
@@ -117,6 +117,22 @@
     </div>
   </form>
 
+  <div v-if="termsVisible" class="modal is-active">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Terms & Conditions</p>
+        <button class="delete" aria-label="close" @click="cancelTerms()"></button>
+      </header>
+      <section class="modal-card-body">
+        <h2>Here belongs terms text</h2>
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button is-success" @click="acceptTerms()">Accept</button>
+        <button class="button" @click="cancelTerms()">Cancel</button>
+      </footer>
+    </div>
+  </div>
 </div>
 </template>
 
@@ -130,7 +146,8 @@ export default {
       email: '',
       password: '',
       confirmPassword: '',
-      terms: false
+      terms: false,
+      termsVisible: false
     }
   },
 
@@ -166,6 +183,19 @@ export default {
       }
 
       this.$store.dispatch('signup', userData)
+    },
+
+    showTerms () {
+      this.termsVisible = true
+    },
+
+    cancelTerms () {
+      this.termsVisible = false
+    },
+
+    acceptTerms () {
+      this.terms = true
+      this.termsVisible = false
     }
   }
 }
